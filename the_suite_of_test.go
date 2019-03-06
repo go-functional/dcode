@@ -16,7 +16,8 @@ const jsonStr = `{
 		"otherb": {
 			"otherc": 200
 		}
-	}
+	},
+	"simple": 1
 }`
 
 type TheSuite struct {
