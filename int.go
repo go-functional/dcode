@@ -5,14 +5,11 @@ import (
 )
 
 func Int() Decoder {
-	return func(b []byte, i interface{}) error {
-		_, ok := i.(*int)
-		if !ok {
-			return ErrWrongType{expected: "int"}
+	return func(b []byte) (interface{}, error) {
+		var i int
+		if err := json.Unmarshal(b, &i); err != nil {
+			return 0, err
 		}
-		if err := json.Unmarshal(b, i); err != nil {
-			return err
-		}
-		return nil
+		return i, nil
 	}
 }

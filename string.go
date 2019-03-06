@@ -5,14 +5,11 @@ import (
 )
 
 func String() Decoder {
-	return func(b []byte, i interface{}) error {
-		_, ok := i.(*string)
-		if !ok {
-			return ErrWrongType{expected: "string"}
+	return func(b []byte) (interface{}, error) {
+		var s string
+		if err := json.Unmarshal(b, &s); err != nil {
+			return "", err
 		}
-		if err := json.Unmarshal(b, i); err != nil {
-			return err
-		}
-		return nil
+		return s, nil
 	}
 }

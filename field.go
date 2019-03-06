@@ -6,24 +6,20 @@ import (
 )
 
 func Field(name string, decoder Decoder) Decoder {
-	return func(b []byte, i interface{}) error {
-		// if we're at a leaf, things should just decode!
-		leafErr := json.Unmarshal(b, i)
-		if leafErr == nil {
-			return nil
-		}
-		// otherwise we're not at a leaf, so traverse down the tree.
-		//
-		// decode what we've got into a map, then get the object under
-		// name, and call the decoder on that
+	return func(b []byte) (interface{}, error) {
 		var m map[string]interface{}
 		if err := json.Unmarshal(b, &m); err != nil {
-			return err
+			return nil, err
 		}
-		next, ok := m[name]
+		iface, ok := m[name]
 		if !ok {
-			return fmt.Errorf("key %s not found", name)
+			// TODO: use a standardized error
+			return nil, fmt.Errorf("Field %s not found", name)
 		}
-		return decoder(b, next)
+		recoded, err := json.Marshal(iface)
+		if err != nil {
+			return nil, err
+		}
+		return decoder(recoded)
 	}
 }
