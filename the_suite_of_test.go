@@ -6,6 +6,19 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
+const jsonStr = `{
+	"a":{
+		"b": {
+			"c": {
+				"d": 200
+			}
+		},
+		"otherb": {
+			"otherc": 200
+		}
+	}
+}`
+
 type TheSuite struct {
 	suite.Suite
 }
