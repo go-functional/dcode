@@ -89,7 +89,7 @@ Decode(probDecoder, jsonBytes, &prob)
 
 It looks a fair bit different than the previous example with `encoding/json`. How is this different? Why is it better? Here are some answers for you:
 
-- No `struct`s to write. Hooray!
+- No boilerplate `struct`s to write. Hooray!
 - You target _just_ the fields you want. No more mistakes with struct tags :fire:
 - You write _how_ to traverse the returned JSON rather than the complete structure you expect. Don't fail because some other field came in slightly differently than you expeced
 - Your parsing code tends to be more self-documenting. It almost looks like [JSONPath](http://jsonpath.com/)!
