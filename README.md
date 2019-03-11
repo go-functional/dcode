@@ -87,7 +87,7 @@ Decode(typeDecoder, jsonBytes, &precipType)
 Decode(probDecoder, jsonBytes, &prob)
 ```
 
-It looks a fair bit different than the previous example with `encoding/json`. How is this different? Why is it better? Here are some answers for you?
+It looks a fair bit different than the previous example with `encoding/json`. How is this different? Why is it better? Here are some answers for you:
 
 - No `struct`s to write. Hooray!
 - You target _just_ the fields you want. No more mistakes with struct tags :fire:
