@@ -3,11 +3,11 @@ package dcode
 // Builder is a convenience struct that lets you write decoders as a chain,
 // rather than in the "pure functional" style. Instead of this:
 //
-//	dcoder := Field("first", Field("second", Field("third", Int())))
+//		dcoder := Field("first", Field("second", Field("third", Int())))
 //
 // You can write this:
 //
-//	dcoder := First("first").Then("second").Then("third").Into(Int())
+//		dcoder := First("first").Then("second").Then("third").Into(Int())
 type Builder struct {
 	fields []string
 }
