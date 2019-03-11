@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// Int decodes any JSON field into an integer
 func Int() Decoder {
 	return newDecoder(func(b []byte) (interface{}, error) {
 		var i int

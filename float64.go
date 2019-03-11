@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// Float64 decodes any JSON field into a float64
 func Float64() Decoder {
 	return newDecoder(func(b []byte) (interface{}, error) {
 		var f float64

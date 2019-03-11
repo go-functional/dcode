@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+// String decodes any JSON field into a string
 func String() Decoder {
 	return newDecoder(func(b []byte) (interface{}, error) {
 		var s string

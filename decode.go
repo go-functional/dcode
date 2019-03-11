@@ -5,6 +5,7 @@ import (
 	"reflect"
 )
 
+// Decode decodes b into i using d
 func Decode(b []byte, d Decoder, i interface{}) error {
 	ret, err := d.call(b)
 	if err != nil {
