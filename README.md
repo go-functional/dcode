@@ -1,6 +1,6 @@
 # Welcome to `dcode` :tada:
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/go-functional/dcode)](https://goreportcard.com/report/github.com/go-functional/dcode)
+[![Go Report Card](https://goreportcard.com/badge/github.com/go-functional/dcode)](https://goreportcard.com/report/github.com/go-functional/dcode) [![GoDoc](https://godoc.org/github.com/go-functional/dcode?status.svg)](https://godoc.org/github.com/go-functional/dcode)
 
 _Note: this library is a work in progress. I'd love for you to try it! If you do find issues, please [file an issue](https://github.com/go-functional/dcode/issues/new). Happy hacking!_
 
