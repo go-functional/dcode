@@ -52,7 +52,7 @@ func Pair(d Decoder, iface interface{}) MapPair {
 //
 // For example, if you have the following JSON:
 //
-//	json := `{"field1": 123, "field2": "456"}``
+//	json := `{"field1": 123, "field2": "456"}`
 //
 // And you have the following decoders:
 //
