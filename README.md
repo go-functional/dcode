@@ -1,5 +1,7 @@
 # Welcome to `dcode` :tada:
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/go-functional/dcode)](https://goreportcard.com/report/github.com/go-functional/dcode)
+
 _Note: this library is a work in progress. I'd love for you to try it! If you do find issues, please [file an issue](https://github.com/go-functional/dcode/issues/new). Happy hacking!_
 
 Welcome Gophers! dcode (pronounced "decode") is a library that gives you a quick and easy way to quickly traverse JSON objects, target a single field, and pull it out into a variable you specify. All using a familiar API.
