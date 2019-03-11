@@ -52,26 +52,26 @@ func Pair(d Decoder, iface interface{}) MapPair {
 //
 // For example, if you have the following JSON:
 //
-//		json := `{"field1": 123, "field2": "456"}``
+//	json := `{"field1": 123, "field2": "456"}``
 //
-//	And you have the following decoders:
+// And you have the following decoders:
 //
-//		dcode1 := Field("field1", Int())
-//		dcode2 := Field("field2", String())
+//	dcode1 := Field("field1", Int())
+//	dcode2 := Field("field2", String())
 //
-//	You can do the following:
+// You can do the following:
 //
-//		stucco := struct{
-//			field1 int
-//			field2 string
-//		}
+//	stucco := struct{
+//		field1 int
+//		field2 string
+//	}
 //
-//		// check the error here!
-//		Map(
-//			[]byte(json),
-//			Pair(dcode1, &stucco.field1),
-//			Pair(dcode2, &stucco.field2),
-//		)
+//	// check the error here!
+//	Map(
+//		[]byte(json),
+//		Pair(dcode1, &stucco.field1),
+//		Pair(dcode2, &stucco.field2),
+//	)
 //
 // Note: you can decode JSON into structs using this function,
 // but if you're trying to decode tons of fields from JSON

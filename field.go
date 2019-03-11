@@ -9,22 +9,22 @@ import (
 // "field1", then goes down to "field2", and then into "field3", and decodes
 // that value into an int:
 //
-//		dcoder := Field("field1", Field("field2", Field("field3", Int())))
+//	dcoder := Field("field1", Field("field2", Field("field3", Int())))
 //
 // If you have the following JSON:
 //
-//		{
-//			"field1": {
-//				"field2": {
-//					"field3": 123
-//				}
+//	{
+//		"field1": {
+//			"field2": {
+//				"field3": 123
 //			}
+//		}
 //	}
 //
 // Then the following code would decode the integer 123 into the variable i
 //
-//		var i int
-//		Decode(dcoder, jsonBytes, &i) // make sure to check the error returned!
+//	var i int
+//	Decode(dcoder, jsonBytes, &i) // make sure to check the error returned!
 func Field(name string, decoder Decoder) Decoder {
 	return newDecoder(func(b []byte) (interface{}, error) {
 		var m map[string]interface{}
