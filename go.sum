@@ -1,3 +1,5 @@
+github.com/bmatsuo/go-jsontree v0.0.0-20140312042150-8a1cc1e88d44 h1:1Ml5yFOjdJS7m+u9Y0haKWO6OBEDo2DDkqfnA/at78E=
+github.com/bmatsuo/go-jsontree v0.0.0-20140312042150-8a1cc1e88d44/go.mod h1:Shc/DV30cu698h1T5Iry3vCfREJVJeePV92PgbOmy68=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
