@@ -1,16 +1,16 @@
 package dcode
 
 import (
-	"encoding/json"
+	tree "github.com/bmatsuo/go-jsontree"
 )
 
-// Int decodes any JSON field into an integer
+// Int decodes any JSON field into an int
 func Int() Decoder {
-	return newDecoder(func(b []byte) (interface{}, error) {
-		var i int
-		if err := json.Unmarshal(b, &i); err != nil {
-			return 0, err
+	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
+		ret, err := t.Number()
+		if err != nil {
+			return nil, err
 		}
-		return i, nil
+		return int(ret), nil
 	})
 }

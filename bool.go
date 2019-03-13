@@ -1,16 +1,16 @@
 package dcode
 
 import (
-	"encoding/json"
+	tree "github.com/bmatsuo/go-jsontree"
 )
 
-// Bool decodes any JSON field into a bool
+// Bool decodes any JSON field into a float64
 func Bool() Decoder {
-	return newDecoder(func(b []byte) (interface{}, error) {
-		var bl bool
-		if err := json.Unmarshal(b, &bl); err != nil {
-			return "", err
+	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
+		ret, err := t.Boolean()
+		if err != nil {
+			return nil, err
 		}
-		return bl, nil
+		return ret, nil
 	})
 }
