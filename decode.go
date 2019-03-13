@@ -82,7 +82,7 @@ func Map(
 	pairs ...MapPair,
 ) error {
 	for _, pair := range pairs {
-		if err := Decode(b, pair.Decoder, pair.Iface); err != nil {
+		if err := Decode(b, pair.decoder, pair.iface); err != nil {
 			return err
 		}
 	}
