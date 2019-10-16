@@ -9,7 +9,8 @@ func Int() Decoder {
 	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
 		ret, err := t.Number()
 		if err != nil {
-			return nil, err
+			var zero int
+			return zero, err
 		}
 		return int(ret), nil
 	})

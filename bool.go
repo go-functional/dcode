@@ -9,7 +9,8 @@ func Bool() Decoder {
 	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
 		ret, err := t.Boolean()
 		if err != nil {
-			return nil, err
+			var zero bool
+			return zero, err
 		}
 		return ret, nil
 	})

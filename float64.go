@@ -9,7 +9,8 @@ func Float64() Decoder {
 	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
 		ret, err := t.Number()
 		if err != nil {
-			return nil, err
+			var zero float64
+			return zero, err
 		}
 		return ret, nil
 	})
