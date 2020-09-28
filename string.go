@@ -1,16 +1,17 @@
 package dcode
 
 import (
-	"encoding/json"
+	tree "github.com/bmatsuo/go-jsontree"
 )
 
 // String decodes any JSON field into a string
 func String() Decoder {
-	return newDecoder(func(b []byte) (interface{}, error) {
-		var s string
-		if err := json.Unmarshal(b, &s); err != nil {
-			return "", err
+	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
+		ret, err := t.String()
+		if err != nil {
+			var zero string
+			return zero, err
 		}
-		return s, nil
+		return ret, nil
 	})
 }

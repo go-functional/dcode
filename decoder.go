@@ -1,5 +1,7 @@
 package dcode
 
+import tree "github.com/bmatsuo/go-jsontree"
+
 // Decoder is the core type in dcode. This is basically a pure function
 // that can decode ANY JSON value into a particular type.
 //
@@ -9,9 +11,9 @@ package dcode
 //
 // Check out the documentation for Field() or Builder for more information
 type Decoder struct {
-	call func([]byte) (interface{}, error)
+	call func(*tree.JsonTree) (interface{}, error)
 }
 
-func newDecoder(fn func([]byte) (interface{}, error)) Decoder {
+func newDecoder(fn func(*tree.JsonTree) (interface{}, error)) Decoder {
 	return Decoder{call: fn}
 }

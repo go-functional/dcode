@@ -1,8 +1,7 @@
 package dcode
 
 import (
-	"encoding/json"
-	"fmt"
+	tree "github.com/bmatsuo/go-jsontree"
 )
 
 // Field builds up a traversal. Here's an example that starts with
@@ -26,24 +25,23 @@ import (
 //	var i int
 //	Decode(dcoder, jsonBytes, &i) // make sure to check the error returned!
 func Field(name string, decoder Decoder) Decoder {
-	return newDecoder(func(b []byte) (interface{}, error) {
-		var m map[string]interface{}
-		if err := json.Unmarshal(b, &m); err != nil {
-			return nil, err
+	return newDecoder(func(t *tree.JsonTree) (interface{}, error) {
+		// First check for a leaf in the JSON tree.
+		// In other words, this is the very inner Field() call, or
+		// the decoder passed to Into()
+		i, err := decoder.call(t)
+		if err == nil {
+			return i, nil
 		}
-		iface, ok := m[name]
-		if !ok {
-			// TODO: use a standardized error
-			return nil, fmt.Errorf("Field %s not found", name)
-		}
-		// we need to re-encode the sub-object so we can pass those bytes
-		// down to the next decoder.
+
+		// Otherwise, if we aren't a leaf node, then try to get
+		// a subtree, and then call the decoder on that subtree.
 		//
-		// TODO: figure out a better way to do this
-		recoded, err := json.Marshal(iface)
-		if err != nil {
-			return nil, err
+		// In other words, traverse the tree
+		subTree := t.Get(name)
+		if subTree.Err() != nil {
+			return nil, subTree.Err()
 		}
-		return decoder.call(recoded)
+		return decoder.call(subTree)
 	})
 }

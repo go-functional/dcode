@@ -3,11 +3,17 @@ package dcode
 import (
 	"fmt"
 	"reflect"
+
+	tree "github.com/bmatsuo/go-jsontree"
 )
 
 // Decode decodes b into i using d
 func Decode(b []byte, d Decoder, i interface{}) error {
-	ret, err := d.call(b)
+	t := tree.New()
+	if err := t.UnmarshalJSON(b); err != nil {
+		return err
+	}
+	ret, err := d.call(t)
 	if err != nil {
 		return err
 	}
