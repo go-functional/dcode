@@ -8,10 +8,12 @@ package dcode
 // First(...).Then(...).Into(...).
 //
 // Check out the documentation for Field() or Builder for more information
-type Decoder struct {
-	call func([]byte) (interface{}, error)
+type Decoder[T any] interface {
+	Decode([]byte) (T, error)
 }
 
-func newDecoder(fn func([]byte) (interface{}, error)) Decoder {
-	return Decoder{call: fn}
+type DecoderFunc[T any] func([]byte) (T, error)
+
+func (d DecoderFunc[T]) Decode(b []byte) (T, error) {
+	return d(b)
 }

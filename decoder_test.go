@@ -3,29 +3,32 @@ package dcode
 import (
 	"fmt"
 	"strconv"
+	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
-func (t *TheSuite) TestSimpleInt() {
-	r := t.Require()
+func TestSimpleInt(t *testing.T) {
+	r := require.New(t)
 	ints := []int{1, 2, 3, 4, 5, 1000}
 	decoder := Int()
 	for i, expected := range ints {
 		expectedBytes := []byte(strconv.Itoa(expected))
-		actual, err := decoder.call(expectedBytes)
+		actual, err := decoder.Decode(expectedBytes)
 		r.NoError(err, "for iteration %d, int %d", i, expected)
 		r.Equal(expected, actual, "expected int %d", actual)
 	}
 
 	notInts := []string{`"abc"`, `"dev"`}
 	for _, notInt := range notInts {
-		actual, err := decoder.call([]byte(notInt))
+		actual, err := decoder.Decode([]byte(notInt))
 		r.True(err != nil)
 		r.Equal(0, actual)
 	}
 }
 
-func (t *TheSuite) TestSimpleString() {
-	r := t.Require()
+func TestSimpleString(t *testing.T) {
+	r := require.New(t)
 	decoder := String()
 	strings := []string{
 		`"this is a thing"`,
@@ -33,7 +36,7 @@ func (t *TheSuite) TestSimpleString() {
 	}
 	for i, expected := range strings {
 		b := []byte(expected)
-		actual, err := decoder.call(b)
+		actual, err := decoder.Decode(b)
 		r.NoError(err, "for iteration %d", i)
 		actualJSONStr := fmt.Sprintf(`"%s"`, actual)
 		r.Equal(expected, actualJSONStr, "for iteration %d", i)
